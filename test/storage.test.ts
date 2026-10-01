@@ -58,6 +58,13 @@ describe("storage", () => {
     `);
   });
 
+  it("getMounts does not match sibling mounts sharing a prefix", () => {
+    const storage = createStorage();
+    storage.mount("cache", memory());
+    storage.mount("cachedb", memory());
+    expect(storage.getMounts("cache").map((m) => m.base)).toEqual(["cache:"]);
+  });
+
   it("snapshot", async () => {
     const storage = createStorage();
     await restoreSnapshot(storage, data);

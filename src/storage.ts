@@ -430,7 +430,7 @@ export function createStorage<T extends StorageValue>(
       };
     },
     getMounts(base = "", opts = {}) {
-      base = normalizeKey(base);
+      base = normalizeBaseKey(base);
       const mounts = getMounts(base, opts.parents);
       return mounts.map((m) => ({
         driver: m.driver,
